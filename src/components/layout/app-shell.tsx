@@ -8,7 +8,6 @@ import { navItems } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { AppLoader } from "@/components/layout/app-loader";
 import { CommandPalette } from "@/components/layout/command-palette";
-import { OnboardingFlow } from "@/components/layout/onboarding-flow";
 import { LogoMark } from "@/components/layout/logo-mark";
 import { Button } from "@/components/ui/button";
 
@@ -164,7 +163,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </div>
 
       <CommandPalette open={openPalette} onClose={() => setOpenPalette(false)} />
-      <OnboardingFlow />
       {routeLoading && <AppLoader fullscreen />}
     </div>
   );
