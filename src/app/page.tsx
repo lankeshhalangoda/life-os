@@ -62,7 +62,7 @@ function TextListCard({ title, items, icon }: { title: string; items: string[]; 
 
 export default function DashboardPage() {
   return (
-    <div className="grid gap-4 xl:grid-cols-[1.55fr_0.9fr]">
+    <div className="grid gap-4 xl:grid-cols-[minmax(0,1.55fr)_minmax(0,0.9fr)]">
       <div className="space-y-4">
         <Card className="surface relative overflow-hidden rounded-2xl p-6">
           <div className="grid gap-5 lg:grid-cols-[1.25fr_1fr]">
@@ -151,7 +151,7 @@ export default function DashboardPage() {
         </section>
       </div>
 
-      <aside className="space-y-3 xl:sticky xl:top-16 xl:h-fit">
+      <aside className="min-w-0 w-full space-y-3 xl:sticky xl:top-16 xl:h-fit">
         <TextListCard title="AI recommendations" items={recommendationItems} icon={<Lightbulb className="h-4 w-4 text-[#7f6651]" />} />
         <Card className="rounded-2xl">
           <h3 className="mb-2 text-base font-semibold">Recent activity timeline</h3>
