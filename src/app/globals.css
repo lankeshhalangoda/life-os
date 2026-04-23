@@ -1,26 +1,113 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ece1d3;
+  --foreground: #2f2117;
+  --surface: #f8f1e6;
+  --surface-muted: #f1e4d2;
+  --surface-deep: #e7d7c2;
+  --brand: #5b3d2a;
+  --brand-soft: #75543c;
+  --taupe: #8f7862;
+  --sand: #b7a48f;
+  --border: #cfbca4;
+  --ring: #8c6346;
+  --radius-ui: 10px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --shadow-ui: 0 8px 26px rgba(60, 40, 25, 0.08);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-brand: var(--brand);
+  --color-taupe: var(--taupe);
+  --color-sand: var(--sand);
+  --color-border: var(--border);
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  min-height: 100%;
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(circle at top right, #f8f1e6 0%, var(--background) 52%, #e5d7c2 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  letter-spacing: -0.01em;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #baa489 #efe3d2;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #baa489;
+  border-radius: var(--radius-ui);
+}
+
+::selection {
+  background: #d9cab4;
+  color: #2f2117;
+}
+
+.surface {
+  background: linear-gradient(180deg, var(--surface) 0%, #f4eadc 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-ui);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), var(--shadow-ui);
+}
+
+.surface-muted {
+  background-color: var(--surface-muted);
+}
+
+.glow-focus {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ring) 26%, transparent);
+}
+
+.divider {
+  border-color: var(--border);
+}
+
+:is(.rounded-sm, .rounded, .rounded-md, .rounded-lg, .rounded-xl, .rounded-2xl, .rounded-3xl) {
+  border-radius: var(--radius-ui) !important;
+}
+
+.page-root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.page-hero {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.page-metrics {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1200px) {
+  .page-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
