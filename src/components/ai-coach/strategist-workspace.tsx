@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import {
   Activity,
   AlertTriangle,
@@ -79,14 +80,21 @@ export function StrategistWorkspace() {
 
   return (
     <div className="space-y-10 pb-10 text-[#2f2117]">
-      <header className="rounded-none border border-[#cfbca4] bg-gradient-to-b from-[#f8f1e6] to-[#efe2cf] px-4 py-5 sm:px-5">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8f7862]">AI Coach</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">Life strategist assistant</h1>
-        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[#5f4733]">
-          Strategy-first advising across decisions, goals, health signals, and accountability.
-        </p>
+      <header className="rounded-none border border-[#cfbca4] bg-gradient-to-b from-[#f8f1e6] to-[#efe2cf] px-4 py-4 sm:px-5">
+        <div className="grid gap-4 border border-[#cfbca4] bg-[#fdf9f3] p-4 md:grid-cols-[minmax(0,1fr)_220px] md:items-center">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8f7862]">AI Coach</p>
+            <h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">Life strategist assistant</h1>
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[#5f4733]">
+              Strategy-first advising across decisions, goals, health signals, and accountability.
+            </p>
+          </div>
+          <div className="relative h-28">
+            <Image src="/images/undraw_artificial-intelligence_43qa.svg" alt="AI coach visual" fill className="object-contain" sizes="220px" />
+          </div>
+        </div>
 
-        <div className="mt-6 grid divide-y divide-[#cfc0ae] border border-[#cfc0ae] bg-[#fdf9f3] md:grid-cols-3 md:divide-x md:divide-y-0">
+        <div className="mt-4 grid divide-y divide-[#cfc0ae] border border-[#cfc0ae] bg-[#fdf9f3] md:grid-cols-3 md:divide-x md:divide-y-0">
           <div className="px-4 py-4 sm:px-5">
             <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8f7862]">Weekly life score</p>
             <p className="mt-1 text-3xl font-light tabular-nums text-[#1f1610]">{weeklyLifeScore}</p>

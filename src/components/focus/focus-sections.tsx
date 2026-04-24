@@ -8,7 +8,7 @@ import { ambientModes, completedSessions } from "@/components/focus/focus-data";
 export function FocusHero({ sessionGoal }: { sessionGoal: string }) {
   return (
     <header className="border-b border-[#cfbca4] bg-[#ece1d3]">
-      <div className="px-3 py-8 sm:px-4 lg:py-10">
+      <div className="py-4 lg:py-5">
         <div className="rounded-none border border-[#cfbca4] bg-[#f8f1e6] p-4 sm:p-5">
           <div className="grid gap-4 border border-[#cfbca4] bg-[#fdf9f3] p-4 md:grid-cols-[minmax(0,1fr)_220px] md:items-center">
             <div>

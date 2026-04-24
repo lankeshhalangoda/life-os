@@ -58,7 +58,7 @@ export function FocusWorkspace() {
     <div className="scroll-smooth text-[#2f2117]">
       <FocusHero sessionGoal={sessionGoal} />
 
-      <div className="space-y-10 px-3 pb-10 sm:px-4">
+      <div className="space-y-10 pb-10">
         <FocusTimerSection
           isWork={isWork}
           minutes={minutes}

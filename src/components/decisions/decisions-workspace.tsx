@@ -194,7 +194,7 @@ export function DecisionsWorkspace() {
   return (
     <div className="space-y-10 pb-10 text-[#2f2117]">
       {/* —— Command strip —— */}
-      <header className="rounded-none border border-[#cfbca4] bg-gradient-to-b from-[#f8f1e6] to-[#f1e6d8] px-4 py-5 sm:px-5">
+      <header className="rounded-none border border-[#cfbca4] bg-gradient-to-b from-[#f8f1e6] to-[#f1e6d8] px-4 py-4 sm:px-5">
         <div className="grid gap-4 border border-[#cfbca4] bg-[#fdf9f3] p-4 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-center">
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8f7862]">Decisions Lab</p>
