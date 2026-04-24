@@ -11,9 +11,6 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "LifeOS - Personal Operating System",
   description: "LifeOS helps manage priorities, decisions, goals, energy, focus, money, and growth in one intelligent system.",
-  icons: {
-    icon: "/icon.svg",
-  },
 };
 
 export default function RootLayout({

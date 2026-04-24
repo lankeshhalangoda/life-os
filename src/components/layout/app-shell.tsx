@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Bell, ChevronRight, Command, Menu, Search, Settings, Sparkles, UserCircle2, Zap } from "lucide-react";
+import { Bell, ChevronRight, Command, Menu, Search, Settings, UserCircle2 } from "lucide-react";
 import { navItems } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { AppLoader } from "@/components/layout/app-loader";
@@ -46,21 +46,17 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     };
   }, [pathname]);
 
-  const routeContext: Record<string, string> = {
-    "/": "Today: 3 priorities, 2 key decisions, 1 reflection checkpoint",
-    "/decisions-lab": "Decision confidence grew +9 after weighted scoring",
-    "/energy-tracker": "Energy trend is strongest when sleep is above 7h",
-    "/goals-engine": "Quarter progress: 64% complete with healthy pace",
-    "/money-clarity": "Runway now 9.2 months with current burn profile",
-    "/reflection-journal": "13-day writing streak maintained",
-    "/focus-mode": "Deep work completion: 87% this week",
-    "/ai-coach": "AI flagged 4 actionable patterns from recent activity",
-  };
+  useEffect(() => {
+    const open = () => setOpenPalette(true);
+    window.addEventListener("lifeos:open-command-palette", open);
+    return () => window.removeEventListener("lifeos:open-command-palette", open);
+  }, []);
+
   const currentLabel = navItems.find((item) => item.href === pathname)?.label ?? "Dashboard";
 
   return (
-    <div className="mx-auto flex w-full max-w-[1860px] flex-1 gap-4 px-3 py-3 lg:gap-5 lg:px-4">
-      <aside className="surface sticky top-3 hidden h-[calc(100vh-1.5rem)] w-[17rem] shrink-0 p-4 lg:flex lg:flex-col">
+    <div className="mx-auto flex w-full max-w-[1860px] flex-1 gap-3 px-3 py-3 lg:gap-4 lg:px-4">
+      <aside className="surface sticky top-3 hidden h-[calc(100vh-1.5rem)] w-[16.5rem] shrink-0 p-4 lg:flex lg:flex-col">
         <div className="mb-7 border-b border-[#cfbca4] pb-4">
           <LogoMark className="text-3xl font-semibold text-[#4a2f20]" />
           <p className="mt-2 whitespace-nowrap text-[10px] uppercase tracking-[0.2em] text-[#8f7862]">Personal Operating System</p>
@@ -92,32 +88,32 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-2">
-            <Button size="sm" variant="outline"><Settings className="mr-1 h-4 w-4" />Settings</Button>
-            <Button size="sm" variant="subtle">Preferences</Button>
-          </div>
-          <p className="text-sm font-semibold text-[#4a3324]">Keyboard-first shortcuts</p>
-          <div className="space-y-1 text-xs text-[#735c47]">
-            <p>Cmd/Ctrl + K: Command palette</p>
-            <p>G then D: Dashboard</p>
-            <p>F: Focus mode timer</p>
+            <Link href="/settings">
+              <Button size="sm" variant="outline" className="w-full">
+                <Settings className="mr-1 h-4 w-4" />
+                Settings
+              </Button>
+            </Link>
+            <Link href="/profile">
+              <Button size="sm" variant="subtle" className="w-full">
+                <UserCircle2 className="mr-1 h-4 w-4" />
+                Profile
+              </Button>
+            </Link>
           </div>
         </div>
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col gap-4">
-        <header className="surface sticky top-0 z-30 flex items-center justify-between px-4 py-3">
-          <div className="flex min-w-0 flex-col gap-1 text-[#5d4633]">
-            <div className="flex items-center gap-2 text-xs text-[#7f6651]">
-              <span>LifeOS</span>
-              <ChevronRight className="h-3.5 w-3.5" />
-              <span>{currentLabel}</span>
-            </div>
-            <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-[#7f6651]" />
-            <p className="text-sm font-medium">{currentLabel}</p>
+        <header className="surface sticky top-0 z-30 flex h-14 items-center justify-between px-4">
+          <div className="flex min-w-0 flex-col gap-0.5 text-[#5d4633]">
+            <div className="flex min-w-0 items-center gap-2 text-xs text-[#7f6651]">
+              <span className="shrink-0">LifeOS</span>
+              <ChevronRight className="h-3.5 w-3.5 shrink-0" />
+              <span className="truncate font-medium text-[#5d4633]">{currentLabel}</span>
             </div>
           </div>
-          <div className="hidden items-center gap-2 rounded-[var(--radius-ui)] border border-[#d3c1aa] bg-[#efe3d2] px-3 py-1.5 text-xs text-[#7a6049] xl:flex">
+          <div className="hidden h-9 items-center gap-2 rounded-[var(--radius-ui)] border border-[#d3c1aa] bg-[#efe3d2] px-3 text-xs text-[#7a6049] xl:flex">
             <Search className="h-3.5 w-3.5" />
             Search priorities, decisions, goals, and actions...
           </div>
@@ -128,15 +124,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <Button variant="outline" size="sm" onClick={() => setOpenPalette(true)}>
               <Command className="mr-1 h-4 w-4" /> Command
             </Button>
-            <Button variant="subtle" size="sm">
+            <Button variant="subtle" size="sm" type="button">
               <Bell className="mr-1 h-4 w-4" /> Updates
             </Button>
           </div>
         </header>
-        <section className="surface flex items-center gap-2 px-4 py-2 text-xs text-[#6f5641]">
-          <Zap className="h-3.5 w-3.5 text-[#7f6651]" />
-          <p>{routeContext[pathname] ?? routeContext["/"]}</p>
-        </section>
         {mobileNavOpen && (
           <nav className="surface grid gap-2 p-3 lg:hidden">
             {navItems.map((item) => (
@@ -145,7 +137,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 href={item.href}
                 onClick={() => setMobileNavOpen(false)}
                 className={cn(
-                  "rounded-[var(--radius-ui)] px-3 py-2 text-sm",
+                  "rounded-[var(--radius-ui)] h-10 px-3 text-sm flex items-center",
                   pathname === item.href
                     ? "bg-[#5a3d2b] text-[#f9f4ea]"
                     : "bg-[#f3e8d9] text-[#5d4633]",

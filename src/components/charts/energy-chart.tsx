@@ -11,16 +11,16 @@ import type { EnergyPoint } from "@/types/lifeos";
 import { useClientReady } from "@/hooks/use-client-ready";
 import { useElementSize } from "@/hooks/use-element-size";
 
-export function EnergyChart({ data }: { data: EnergyPoint[] }) {
+export function EnergyChart({ data, heightClass = "h-72" }: { data: EnergyPoint[]; heightClass?: string }) {
   const mounted = useClientReady();
   const { ref, size } = useElementSize<HTMLDivElement>();
 
   if (!mounted) {
-    return <div className="h-72 w-full rounded-sm border border-[#d2c3ae] bg-[#f3e8d9]" />;
+    return <div className={`${heightClass} w-full rounded-sm border border-[#cfbca4] bg-[#efe3d2]`} />;
   }
 
   return (
-    <div ref={ref} className="h-72 w-full min-w-0">
+    <div ref={ref} className={`${heightClass} w-full min-w-0`}>
       {size.width > 0 && size.height > 0 ? (
         <LineChart width={size.width} height={size.height} data={data}>
           <XAxis dataKey="day" axisLine={false} tickLine={false} stroke="#8f7862" />
@@ -43,7 +43,7 @@ export function EnergyChart({ data }: { data: EnergyPoint[] }) {
           />
         </LineChart>
       ) : (
-        <div className="h-full w-full animate-pulse rounded-xl bg-[#f1e4d2]" />
+        <div className="h-full w-full animate-pulse rounded-sm bg-[#efe3d2]" />
       )}
     </div>
   );

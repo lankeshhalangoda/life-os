@@ -12,14 +12,14 @@
   --sand: #b7a48f;
   --border: #cfbca4;
   --ring: #8c6346;
-  --radius-ui: 10px;
+  --radius-ui: 2px;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
   --space-5: 20px;
   --space-6: 24px;
-  --shadow-ui: 0 8px 26px rgba(60, 40, 25, 0.08);
+  --shadow-ui: 0 1px 0 rgba(60, 40, 25, 0.08);
 }
 
 @theme inline {
@@ -40,10 +40,11 @@ body {
 }
 
 body {
-  background: radial-gradient(circle at top right, #f8f1e6 0%, var(--background) 52%, #e5d7c2 100%);
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
   letter-spacing: -0.01em;
+  line-height: 1.45;
 }
 
 * {
@@ -67,10 +68,10 @@ body {
 }
 
 .surface {
-  background: linear-gradient(180deg, var(--surface) 0%, #f4eadc 100%);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-ui);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), var(--shadow-ui);
+  box-shadow: var(--shadow-ui);
 }
 
 .surface-muted {
@@ -85,14 +86,15 @@ body {
   border-color: var(--border);
 }
 
-:is(.rounded-sm, .rounded, .rounded-md, .rounded-lg, .rounded-xl, .rounded-2xl, .rounded-3xl) {
+:is(.rounded-none, .rounded-sm, .rounded, .rounded-md, .rounded-lg, .rounded-xl, .rounded-2xl, .rounded-3xl, .rounded-full) {
   border-radius: var(--radius-ui) !important;
 }
 
+/* Vertical rhythm aligned with dashboard control center (space-y-12 ≈ 3rem between major blocks) */
 .page-root {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: 2rem;
 }
 
 .page-hero {
@@ -110,4 +112,35 @@ body {
   .page-metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* Equal-height siblings in a grid row (cards / panels on the same line) */
+.grid-row-cards {
+  align-items: stretch;
+}
+
+.grid-row-cards > * {
+  min-height: 0;
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+p,
+li,
+label,
+input,
+textarea,
+button {
+  line-height: 1.45;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
 }

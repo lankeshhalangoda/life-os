@@ -23,8 +23,8 @@ export function CommandPalette({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-[#2f2117]/30 p-4 pt-24" onClick={onClose}>
-      <Card className="w-full max-w-xl rounded-2xl p-3" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-[#2f2117]/30 p-4 pt-20" onClick={onClose}>
+      <Card className="w-full max-w-xl p-3" onClick={(e) => e.stopPropagation()}>
         <div className="mb-3 flex items-center gap-2 border-b border-[#d2c3ae] pb-3">
           <Search className="h-4 w-4 text-[#7e6753]" />
           <Input
@@ -41,7 +41,7 @@ export function CommandPalette({
               key={item.href}
               href={item.href}
               onClick={onClose}
-              className="flex items-center justify-between rounded-xl px-3 py-2 text-sm text-[#402d20] hover:bg-[#efe3d2]"
+              className="flex h-10 items-center justify-between rounded-[var(--radius-ui)] px-3 text-sm text-[#402d20] hover:bg-[#efe3d2]"
             >
               <span>{item.label}</span>
               <span className="text-xs text-[#8f7862]">Enter</span>
